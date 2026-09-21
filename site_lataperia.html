@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>La Taperia — Tapas, Pintxos e Coquetelaria</title>
+<meta name="description" content="La Taperia — tapas, pintxos, coquetéis clássicos, cervezas artesanais e vinhos. Rua da Paciência, nº 251. Reservas: +55 71 99116-5140.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%23f7f2e9'/%3E%3Ctext x='32' y='43' font-family='Georgia' font-size='30' font-style='italic' fill='%2396341f' text-anchor='middle'%3ELT%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;1,500&family=Work+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Restaurant","name":"La Taperia","servesCuisine":"Espanhola","telephone":"+5571991165140","priceRange":"$$","acceptsReservations":"True","address":{"@type":"PostalAddress","streetAddress":"Rua da Paciência, nº 251"}}
+</script>
+<style>
+:root{
+  --paper:#f7f2e9; --paper-2:#efe8da;
+  --ink:#211c15; --ink-2:#4f463a; --muted:#8a7d6c;
+  --line:#e0d6c3; --line-2:#c9bca4;
+  --red:#96341f; --dark:#1d1812; --cream:#f1e9d8;
+  --nav-h:66px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:'Work Sans',sans-serif;font-weight:400;background:var(--paper);color:var(--ink);-webkit-font-smoothing:antialiased}
+body.lock{overflow:hidden}
+img,svg{display:block}
+a{color:inherit}
+::selection{background:var(--red);color:var(--cream)}
+.wrap{width:min(1100px,90vw);margin-inline:auto}
+section{scroll-margin-top:calc(var(--nav-h) + 10px)}
+
+/* ── barra superior ── */
+.topbar{border-bottom:1px solid var(--line)}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:20px;padding:9px 0;font-size:.7rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2)}
+.topbar span:nth-child(2){color:var(--muted)}
+.topbar a{text-decoration:none}
+.topbar a:hover{color:var(--red)}
+@media(max-width:720px){.topbar span:nth-child(2){display:none}}
+
+/* ── navegação ── */
+.nav{position:sticky;top:0;z-index:60;background:rgba(247,242,233,.94);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;height:var(--nav-h)}
+.brand{display:inline-flex;align-items:center;text-decoration:none;font-family:'Cormorant Garamond',serif;font-size:1.55rem;font-weight:600;letter-spacing:.01em}
+.brand em{color:var(--red)}
+.brand img{display:block;height:52px;width:auto;background:#000;padding:4px 12px;border-radius:8px;box-shadow:0 1px 4px rgba(0,0,0,.12)}
+.nav-links{display:flex;gap:30px;list-style:none}
+.nav-links a{font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;color:var(--ink-2);padding:4px 0;border-bottom:1px solid transparent;transition:.2s}
+.nav-links a:hover{color:var(--ink);border-color:var(--ink)}
+.nav-reserve{font-size:.7rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;border:1px solid var(--ink);padding:10px 20px;transition:.2s}
+.nav-reserve:hover{background:var(--ink);color:var(--paper)}
+.burger{display:none;width:42px;height:42px;background:none;border:1px solid var(--line-2);border-radius:2px;cursor:pointer;position:relative}
+.burger span{position:absolute;left:11px;right:11px;height:1.5px;background:var(--ink);transition:.25s}
+.burger span:nth-child(1){top:15px}.burger span:nth-child(2){top:20px}.burger span:nth-child(3){top:25px}
+.burger.open span:nth-child(1){top:20px;transform:rotate(45deg)}
+.burger.open span:nth-child(2){opacity:0}
+.burger.open span:nth-child(3){top:20px;transform:rotate(-45deg)}
+@media(max-width:880px){.nav-links,.nav-reserve{display:none}.burger{display:block}}
+.mmenu{position:fixed;inset:0;z-index:70;background:var(--paper);display:grid;place-items:center;text-align:center;opacity:0;visibility:hidden;transition:.3s}
+.mmenu.open{opacity:1;visibility:visible}
+.mmenu nav{display:flex;flex-direction:column;gap:8px}
+.mmenu a{font-family:'Cormorant Garamond',serif;font-size:2rem;font-weight:600;text-decoration:none;padding:6px 30px}
+.mmenu a:hover{color:var(--red)}
+.mmenu .m-cta{margin-top:18px;font-family:'Work Sans';font-size:.75rem;letter-spacing:.2em;text-transform:uppercase;color:var(--red)}
+
+/* ── hero ── */
+.hero{padding:clamp(80px,13vh,140px) 20px clamp(60px,9vh,100px);text-align:center}
+.hero h1{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(3.4rem,10vw,6.6rem);line-height:1.02}
+.hero h1 em{font-weight:500}
+.hero-rule{width:1px;height:52px;background:var(--line-2);margin:30px auto}
+.hero-tag{max-width:54ch;margin:0 auto;color:var(--ink-2);font-weight:300;font-size:clamp(1rem,2vw,1.15rem);line-height:1.8}
+.hero-ctas{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;margin-top:36px}
+.btn{display:inline-block;padding:14px 32px;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;transition:.2s;border:1px solid var(--ink)}
+.btn-solid{background:var(--ink);color:var(--paper)}
+.btn-solid:hover{background:var(--red);border-color:var(--red)}
+.btn-ghost{color:var(--ink)}
+.btn-ghost:hover{background:var(--ink);color:var(--paper)}
+.hero-meta{margin-top:34px;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+/* ── seções ── */
+.sec{padding:clamp(70px,10vh,110px) 0}
+.sec-title{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(2rem,4.4vw,3rem);line-height:1.15}
+.eyebrow{font-size:.68rem;letter-spacing:.28em;text-transform:uppercase;color:var(--red);display:block;margin-bottom:14px}
+.sec-sub{color:var(--muted);font-weight:300;margin-top:12px;line-height:1.75;max-width:58ch}
+
+/* ── a casa ── */
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:clamp(40px,7vw,90px);align-items:start}
+.about-grid .lead{color:var(--ink-2);font-weight:300;line-height:1.9;margin-top:20px}
+.about-points{border-top:1px solid var(--line)}
+.about-points div{display:flex;gap:18px;align-items:baseline;padding:18px 0;border-bottom:1px solid var(--line)}
+.about-points b{font-weight:600;font-size:.92rem;white-space:nowrap}
+.about-points p{color:var(--muted);font-weight:300;font-size:.88rem;line-height:1.6}
+@media(max-width:820px){.about-grid{grid-template-columns:1fr}}
+
+/* ── cardápio ── */
+.menu-head{text-align:center;margin-bottom:26px}
+.search{display:flex;align-items:center;gap:12px;max-width:520px;margin:34px auto 0;border-bottom:1px solid var(--line-2);padding:10px 6px}
+.search:focus-within{border-color:var(--ink)}
+.search input{flex:1;background:none;border:0;outline:0;font:300 .95rem 'Work Sans';color:var(--ink)}
+.search input::placeholder{color:var(--muted)}
+.menu-tabs{position:sticky;top:var(--nav-h);z-index:40;background:rgba(247,242,233,.95);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.tabs-scroll{display:flex;gap:26px;overflow-x:auto;padding:15px max(5vw,calc((100vw - 1100px)/2));scrollbar-width:none}
+.tabs-scroll::-webkit-scrollbar{display:none}
+.tab{flex:none;background:none;border:0;cursor:pointer;font:500 .7rem 'Work Sans';letter-spacing:.16em;text-transform:uppercase;color:var(--muted);padding:2px 0;border-bottom:1px solid transparent;transition:.2s}
+.tab:hover{color:var(--ink)}
+.tab.active{color:var(--red);border-color:var(--red)}
+.panel{padding-top:10px;min-height:260px}
+.ghead{display:flex;align-items:center;gap:18px;margin:60px 0 4px}
+.ghead h3{font:600 .68rem 'Work Sans';letter-spacing:.3em;text-transform:uppercase;color:var(--ink-2);white-space:nowrap}
+.ghead::after{content:'';flex:1;height:1px;background:var(--line)}
+.cat{margin:54px 0;scroll-margin-top:calc(var(--nav-h) + 70px)}
+.cat-pt{font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--red)}
+.cat h3{font-family:'Cormorant Garamond',serif;font-weight:600;font-size:clamp(1.7rem,3.4vw,2.3rem);margin:6px 0 4px}
+.cat h3 .n{font-style:italic;font-size:.62em;color:var(--muted);margin-right:14px;font-weight:500}
+.cat-note{color:var(--muted);font-size:.85rem;font-weight:300;margin-bottom:8px}
+.items{display:grid;grid-template-columns:1fr 1fr;gap:2px clamp(40px,5vw,72px);margin-top:18px}
+.item{padding:14px 0;border-bottom:1px solid var(--line)}
+.it-top{display:flex;align-items:baseline;gap:10px}
+.it-top h4{font-weight:500;font-size:1rem}
+.dots{flex:1;border-bottom:1px dotted var(--line-2);transform:translateY(-4px);min-width:24px}
+.price{font-weight:500;font-size:.93rem;color:var(--ink-2);white-space:nowrap;font-variant-numeric:tabular-nums}
+.price.sm{font-size:.78rem}
+.desc{color:var(--muted);font-weight:300;font-size:.85rem;line-height:1.55;margin-top:4px;max-width:56ch}
+.search-info{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:1.15rem;color:var(--ink-2);margin:30px 0 0}
+.empty{text-align:center;padding:70px 20px;color:var(--muted);font-weight:300}
+.menu-foot{text-align:center;color:var(--muted);font-size:.78rem;padding:56px 0 0}
+@media(max-width:760px){.items{grid-template-columns:1fr}}
+
+/* ── contato ── */
+.contact-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:clamp(36px,5vw,70px);margin-top:44px}
+.c-row{padding:18px 0;border-bottom:1px solid var(--line)}
+.c-row:first-child{border-top:1px solid var(--line)}
+.c-row span{display:block;font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:var(--muted);margin-bottom:6px}
+.c-row p,.c-row a{font-weight:300;font-size:1.02rem;text-decoration:none;line-height:1.6}
+.c-row a:hover{color:var(--red)}
+.c-btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:26px}
+.map{border:1px solid var(--line);min-height:420px;position:relative}
+.map iframe{position:absolute;inset:0;width:100%;height:100%;border:0;filter:grayscale(.2)}
+@media(max-width:820px){.contact-grid{grid-template-columns:1fr}.map{min-height:320px}}
+
+/* ── rodapé ── */
+footer{background:var(--dark);color:rgba(241,233,216,.75);margin-top:40px}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:36px;padding:60px 0 44px}
+.f-brand{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:600;color:var(--cream)}
+.f-brand em{color:#c39a58}
+.f-brand img{display:block;height:64px;width:auto;mix-blend-mode:screen}
+.f-tag{font-family:'Cormorant Garamond',serif;font-style:italic;margin-top:10px;font-size:.95rem}
+footer h4{font-size:.66rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(241,233,216,.5);margin-bottom:14px;font-weight:600}
+footer li{list-style:none;margin-bottom:9px;font-weight:300;font-size:.88rem}
+footer a{text-decoration:none}
+footer a:hover{color:var(--cream)}
+.f-bottom{border-top:1px solid rgba(241,233,216,.12);padding:20px 0;font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(241,233,216,.4);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:820px){.f-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:520px){.f-grid{grid-template-columns:1fr}}
+
+/* ── flutuantes ── */
+.wa{position:fixed;right:20px;bottom:20px;z-index:65;width:52px;height:52px;border-radius:50%;background:#22a55b;display:grid;place-items:center;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.18);transition:.2s}
+.wa:hover{transform:translateY(-2px)}
+.ig{position:fixed;right:20px;bottom:80px;z-index:65;width:52px;height:52px;border-radius:50%;background:linear-gradient(45deg,#f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%);display:grid;place-items:center;color:#fff;box-shadow:0 6px 18px rgba(0,0,0,.18);transition:.2s}
+.ig:hover{transform:translateY(-2px)}
+.totop{position:fixed;right:24px;bottom:146px;z-index:65;width:40px;height:40px;border:1px solid var(--line-2);background:var(--paper);color:var(--ink);border-radius:50%;cursor:pointer;display:grid;place-items:center;opacity:0;visibility:hidden;transition:.25s}
+.totop.show{opacity:1;visibility:visible}
+
+/* ── animações discretas ── */
+.js .reveal{opacity:0;transform:translateY(14px);transition:opacity .7s ease,transform .7s ease}
+.js .reveal.in{opacity:1;transform:none}
+@keyframes fadeUp{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+.it-in{animation:fadeUp .45s ease both}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}.js .reveal{opacity:1;transform:none}}
+</style>
+</head>
+<body>
+
+<!-- Barra superior -->
+<div class="topbar">
+  <div class="wrap">
+    <span>Rua da Paciência, nº 251</span>
+    <span>Ter a Dom · a partir das 17h</span>
+    <a href="tel:+5571991165140">+55 71 99116-5140</a>
+  </div>
+</div>
+
+<!-- Navegação -->
+<!-- LOGO: usar o arquivo "logo.png" na MESMA PASTA deste HTML.
+     Se o arquivo estiver ausente, o nome "La Taperia" aparece em texto automaticamente. -->
+<nav class="nav">
+  <div class="wrap">
+    <a class="brand" href="#inicio"><img src="logo.png" alt="La Taperia"></a>
+    <ul class="nav-links">
+      <li><a href="#inicio">Início</a></li>
+      <li><a href="#casa">A Casa</a></li>
+      <li><a href="#cardapio">Cardápio</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+    <a class="nav-reserve" href="https://wa.me/5571991165140?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva%20no%20La%20Taperia." target="_blank" rel="noopener">Reservar</a>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</nav>
+
+<div class="mmenu" id="mmenu">
+  <nav>
+    <a href="#inicio">Início</a>
+    <a href="#casa">A Casa</a>
+    <a href="#cardapio">Cardápio</a>
+    <a href="#contato">Contato</a>
+    <a class="m-cta" href="https://wa.me/5571991165140" target="_blank" rel="noopener">Reservar · WhatsApp</a>
+  </nav>
+</div>
+
+<!-- Hero -->
+<header id="inicio" class="hero">
+  <p class="eyebrow">Tapas · Pintxos · Coquetelaria</p>
+  <h1><em>La</em> Taperia</h1>
+  <div class="hero-rule" aria-hidden="true"></div>
+  <p class="hero-tag">A tradição do tapeo espanhol à mesa: pintxos, tapas, sangría da casa e um gin tônica para cada signo — cozinha para compartilhar, em bom ritmo, sem pressa.</p>
+  <div class="hero-ctas">
+    <a class="btn btn-solid" href="#cardapio">Ver o cardápio</a>
+    <a class="btn btn-ghost" href="https://wa.me/5571991165140?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva%20no%20La%20Taperia." target="_blank" rel="noopener">Reservar pelo WhatsApp</a>
+  </div>
+  <p class="hero-meta">Rua da Paciência, nº 251 &nbsp;·&nbsp; +55 71 99116-5140</p>
+</header>
+
+<!-- A Casa -->
+<section id="casa" class="sec">
+  <div class="wrap about-grid">
+    <div class="reveal">
+      <p class="eyebrow">A Casa</p>
+      <h2 class="sec-title">Comer bem é<br>questão de tempo</h2>
+      <p class="lead">O tapeo é um modo de à mesa: pratos pequenos no centro, conversa comprida e uma rodada que sempre pede outra. Na cozinha, o clássico espanhol feito na hora — da tortilla ao pescado do dia. Na barra, sangría de jarras, cervezas artesanais e um gin tônica para cada signo do zodíaco.</p>
+    </div>
+    <div class="about-points reveal" style="transition-delay:.1s">
+      <div><b>Cozinha na hora</b><p>Tortillas e tapas preparadas no momento do pedido.</p></div>
+      <div><b>Gins del Zodíaco</b><p>Um gin tônica para cada signo do zodíaco.</p></div>
+      <div><b>Para compartilhar</b><p>Pintxos, tabelas de embutidos e jarras para dividir.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- Cardápio -->
+<section id="cardapio" class="sec">
+  <div class="wrap menu-head reveal">
+    <p class="eyebrow">Cardápio</p>
+    <h2 class="sec-title">A nossa carta</h2>
+    <div class="search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#8a7d6c" stroke-width="1.6" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="search" type="search" placeholder="Buscar no cardápio…" autocomplete="off">
+    </div>
+  </div>
+  <div class="menu-tabs"><div class="tabs-scroll" id="tabs"></div></div>
+  <div class="wrap"><div class="panel" id="panel"></div>
+  <p class="menu-foot">Preços e opções podem variar. Consulte as sugestões do dia com o nosso time.</p></div>
+</section>
+
+<!-- Contato -->
+<section id="contato" class="sec">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Contato</p>
+      <h2 class="sec-title">Reservas e localização</h2>
+    </div>
+    <div class="contact-grid">
+      <div class="reveal">
+        <div class="c-row"><span>Endereço</span><p>Rua da Paciência, nº 251</p></div>
+        <div class="c-row"><span>Telefone / WhatsApp</span><p><a href="tel:+5571991165140">+55 71 99116-5140</a></p></div>
+        <div class="c-row"><span>Instagram</span><p><a href="https://www.instagram.com/lataperiasalvador" target="_blank" rel="noopener">@lataperiasalvador</a></p></div>
+        <div class="c-row"><span>Horários</span><p>Ter a Qui · 17h–23h<br>Sex e Sáb · 17h–00h<br>Dom · 12h–21h</p></div>
+        <div class="c-btns">
+          <a class="btn btn-solid" href="https://wa.me/5571991165140?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva%20no%20La%20Taperia." target="_blank" rel="noopener">Chamar no WhatsApp</a>
+          <a class="btn btn-ghost" href="https://www.google.com/maps/search/?api=1&query=Rua%20da%20Paci%C3%AAncia%20251" target="_blank" rel="noopener">Como chegar</a>
+        </div>
+      </div>
+      <div class="map reveal" style="transition-delay:.1s">
+        <iframe title="Mapa — La Taperia" src="https://www.google.com/maps?q=Rua%20da%20Paci%C3%AAncia%2C%20251&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Rodapé -->
+<footer>
+  <div class="wrap f-grid">
+    <div>
+      <div class="f-brand"><img src="logo.png" alt="La Taperia"></div>
+      <p class="f-tag">«La vida se comparte a mordiscos.»</p>
+    </div>
+    <div><h4>Contato</h4><ul>
+      <li>Rua da Paciência, nº 251</li>
+      <li><a href="tel:+5571991165140">+55 71 99116-5140</a></li>
+      <li><a href="https://www.instagram.com/lataperiasalvador" target="_blank" rel="noopener">@lataperiasalvador</a></li>
+    </ul></div>
+    <div><h4>Horários</h4><ul>
+      <li>Ter a Qui · 17h–23h</li>
+      <li>Sex e Sáb · 17h–00h</li>
+      <li>Dom · 12h–21h</li>
+    </ul></div>
+    <div><h4>Navegação</h4><ul>
+      <li><a href="#casa">A Casa</a></li>
+      <li><a href="#cardapio">Cardápio</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul></div>
+  </div>
+  <div class="wrap f-bottom"><span>© 2025 La Taperia</span><span>Tapas · Pintxos · Coquetelaria</span></div>
+</footer>
+
+<a class="wa" href="https://wa.me/5571991165140?text=Ol%C3%A1!%20Gostaria%20de%20fazer%20uma%20reserva%20no%20La%20Taperia." target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</a>
+<a class="ig" href="https://www.instagram.com/lataperiasalvador" target="_blank" rel="noopener" aria-label="Instagram">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+</a>
+<button class="totop" id="totop" aria-label="Voltar ao topo">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M18 15l-6-6-6 6"/></svg>
+</button>
+
+<script>
+document.documentElement.classList.add('js');
+(function(){
+"use strict";
+var $=function(s,c){return (c||document).querySelector(s)};
+var $$=function(s,c){return [].slice.call((c||document).querySelectorAll(s))};
+
+/* menu mobile / voltar ao topo */
+var burger=$('#burger'),mmenu=$('#mmenu'),totop=$('#totop');
+function closeMenu(){burger.classList.remove('open');mmenu.classList.remove('open');document.body.classList.remove('lock')}
+burger.addEventListener('click',function(){var o=burger.classList.toggle('open');mmenu.classList.toggle('open',o);document.body.classList.toggle('lock',o)});
+ $$('#mmenu a').forEach(function(a){a.addEventListener('click',closeMenu)});
+addEventListener('scroll',function(){totop.classList.toggle('show',scrollY>700)},{passive:true});
+totop.addEventListener('click',function(){scrollTo({top:0,behavior:'smooth'})});
+
+/* revelar ao rolar */
+var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}})},{threshold:.1,rootMargin:'0px 0px -30px 0px'});
+ $$('.reveal').forEach(function(el){io.observe(el)});
+
+/* logo com fallback: se o arquivo "logo.png" não carregar, exibe o nome em texto */
+ $$('.brand img,.f-brand img').forEach(function(img){
+  function swap(){
+    var brand=img.closest('.brand');
+    img.outerHTML=brand?'<span><em>La</em> Taperia</span>':'<em>La</em> Taperia';
+  }
+  if(img.complete&&img.naturalWidth===0){swap()}
+  else{img.addEventListener('error',swap)}
+});
+
+/* ═══════════════════════════════════════════════════════
+   CARDÁPIO — dados editáveis
+   Categorias confirmadas com print oficial:
+   ✔ PINTXOS (10)  ✔ TAPAS DEL DÍA (14)
+   ✔ TAPAS RICAS (15)  ✔ PAN (4)  ✔ ENSALADAS (2)
+   ✔ TABLAS DE EMBUTIDOS (1 · preço sob consulta)
+   ✔ TORTILLAS (1 · preço sob consulta)
+   ✔ LOS PESCADOS (5)  ✔ LAS CARNES (3)  ✔ LOS ARROCES (6)
+   ✔ DRINKS Y CÓCTELES (13)  ✔ JARRAS CON ALCOHOL (10)
+   ✔ JARRAS SIN ALCOHOL (5)  ✔ COCTELES SIN ALCOHOL (4)
+   ✔ CERVEZAS ARTESANALES (14)  ✔ GINS DEL ZODÍACO (12)
+   ✔ DESTILADOS Y ETC ☆ 50ML (8)  ✔ CHUPITOS (2)
+   ✔ CAVAS (4)  ✔ VINOS BLANCOS (16)  ✔ VINOS ROSADOS (3)
+   ✔ SIN ALCOHOL (20)  ✔ POSTRES (5)  ✔ CAFÉS (3)
+   ◐ VINOS TINTOS — parcial (37 itens lançados; +2 do
+     print: Walk the Line e Yllera 9 meses; falta apenas
+     a última imagem do cliente)
+   ✖ COCTELES AUTORALES POR WESLEY SANTOS — removida a
+     pedido do cliente (a casa não oferece esses drinks)
+   Cardápio 100% confirmado, exceto a última imagem de
+   Vinos Tintos.
+   Logo: nav + rodapé usam o arquivo "logo.png" ,
+   mesma pasta deste HTML); se faltar, o nome aparece em
+   texto.
+   ═══════════════════════════════════════════════════════ */
+var GROUPS=[
+ {id:'picar',label:'Para Picar'},
+ {id:'terra',label:'Da Terra e do Mar'},
+ {id:'coct',label:'Coquetelaria'},
+ {id:'barra',label:'Barra'},
+ {id:'bodega',label:'Bodega'},
+ {id:'doces',label:'Sem Álcool & Sobremesas'}
+];
+
+var MENU=[
+/* ── PINTXOS — confirmado (print oficial) ── */
+{id:'pintxos',group:'picar',es:'Pintxos',items:[
+ {n:'Abacate + Camarão + Palmito',p:'R$ 14,00'},
+ {n:'Atum + Pimentão + Cebola',p:'R$ 14,00'},
+ {n:'Brandada de Polvo + Alioli',p:'R$ 14,00'},
+ {n:'Brie + Geleia + Amora',p:'R$ 14,00'},
+ {n:'Chorizo + Ovo de Codorna + Jamón',p:'R$ 14,00'},
+ {n:'Cogumelos + Tomate + Agrião',p:'R$ 14,00'},
+ {n:'Escalivada + Requeijão + Raspa',p:'R$ 14,00'},
+ {n:'Filé + Mousse de Pato + Uva',p:'R$ 14,00'},
+ {n:'Gorgonzola + Pêra + Nozes',p:'R$ 14,00'},
+ {n:'Terrine + Picles + Framboesa + Alioli',p:'R$ 14,00'}
+]},
+
+/* ── TAPAS DEL DÍA — confirmado (print oficial; 14 itens) ── */
+{id:'tapas-dia',group:'picar',es:'Tapas del Día',items:[
+ {n:'Arroz Caldoso de Lagosta',p:'R$ 84,00'},
+ {n:'Bochecha de Boi',d:'Deliciosa bochecha de boi acompanhada de purê de inhame roxo, palmito e molho de vinho tinto.',p:'R$ 68,00'},
+ {n:'Brisket de Boi Defumado na Lenha de Laranjeiras',d:'Acompanha risoto de cogumelos.',p:'R$ 74,00'},
+ {n:'Burrata Tradicional',d:'Acompanha cesta de pão e dois pestos.',p:'R$ 68,00'},
+ {n:'Caldo de Abóbora 300ml',d:'Delicioso caldo de abóbora com redução de vinho tinto e gengibre.',p:'R$ 30,00'},
+ {n:'Empanadas',d:'Carne moída · Frutos do Mar. Preço por unidade.',p:'R$ 28,00'},
+ {n:'Gambones a la Plancha',p:'R$ 79,00'},
+ {n:'Mejillones al Ajillo',d:'Mexilhões cozidos ao vapor, com vinho branco, folha de louro, limão, alho e pimenta caiena.',p:'R$ 53,00'},
+ {n:'Mejillones al Vapor',d:'Mexilhões cozidos ao vapor, com vinho branco, folha de louro e limão.',p:'R$ 53,00'},
+ {n:'Mejillones Bravos',d:'Mexilhões cozidos no vinho branco, folha de louro, limão, cebolas e molho bravo (apimentado).',p:'R$ 53,00'},
+ {n:'Ostras Frescas',d:'6 unidades.',p:'R$ 58,00'},
+ {n:'Ostras Gratinadas',d:'Com musseline de alho e azeite de trufa branca.',p:'R$ 58,00'},
+ {n:'Steak Tartare',p:'R$ 65,00'},
+ {n:'Vóngoles ao molho verde, com açafrão',p:'R$ 48,00'}
+]},
+
+/* ── TAPAS RICAS — confirmado (print oficial; 15 itens) ── */
+{id:'tapas-ricas',group:'picar',es:'Tapas Ricas',items:[
+ {n:'Brie Empanado',d:'Cubos de queijo brie empanados em farinha crocante e mix de 3 compotas caseiras. 9 unidades.',p:'R$ 59,00'},
+ {n:'Chipirones a la Plancha',d:'Lulinhas grelhadas com batatas cozidas.',p:'R$ 64,00'},
+ {n:'Croquetas',d:'Croquetas de cogumelos, camarão e/ou jamón com alioli artesanal e picante. 6 unidades. Você pode escolher apenas 1 sabor ou 2 de cada.',p:'R$ 60,00'},
+ {n:'Gambas al Ajillo',d:'Flamado em conhaque francês e levemente picante. 220g.',p:'R$ 72,00'},
+ {n:'Huevos Rotos con Jamón y Patatas a la Panadera',d:'280g.',p:'R$ 58,00'},
+ {n:'Menu Kids',d:'Que prefere? Carne, peixes, batatas fritas, macarrão, verdurinhas…? Tío Morchón te prepara! Para menores de 12 anos.',p:'R$ 40,00'},
+ {n:'Ovos mexidos com mix de cogumelos frescos + pão',d:'250g.',p:'R$ 58,00'},
+ {n:'Patata Palha',d:'Con reducción de vino tinto. (Por Lola Morchón)',p:'R$ 37,00'},
+ {n:'Patatas Bravas',d:'Caseiras e em cubos, com molho de tomate picante e alioli. 250g.',p:'R$ 39,00'},
+ {n:'Patatas Chips',d:'Batatas chips com páprica defumada e vinagre. 220g.',p:'R$ 39,00'},
+ {n:'Pirulitos de Langostinos Rebozados en Bifun',d:'Camarões empanados no bifun, com alioli de wasabi para molhar. 10 unidades.',p:'R$ 68,00'},
+ {n:'Polvo com Camarão',p:'R$ 97,00'},
+ {n:'Polvo na Manteiga',d:'Tentáculos de polvo na manteiga e alho, com batatas cozidas e páprica.',p:'R$ 89,00'},
+ {n:'Provolone a la Plancha sobre Disco de Hojaldre',d:'Provolone grelhado e ao forno sobre disco de massa folhada, com geleia de tomate levemente picante ao centro. 220g.',p:'R$ 59,00'},
+ {n:'Pulpo a la Gallega',d:'Servido com as suas batatas, alinhado com flor de sal, páprica defumada espanhola autêntica e azeite extra-virgem. O Top Hit da casa! 170g.',p:'R$ 75,00'}
+]},
+
+/* ── PAN — confirmado (print oficial; 4 itens) ── */
+{id:'pan',group:'picar',es:'Pan',items:[
+ {n:'Cesta de Pan',d:'De 5 a 6 fatias de nosso pão artesanal fresco e torrado.',p:'R$ 14,00'},
+ {n:'Pan + Alioli',d:'Porção de 5 a 6 fatias do nosso pão artesanal fresco e ligeiramente torrado, com uma porção de alioli exclusivo! (Cesta)',p:'R$ 16,00'},
+ {n:'Pan + Tumaca',d:'De 5 a 6 fatias de pão artesanal fresco e ligeiramente torrado, com uma caçarola do nosso famoso molho de tomate fresco! (Cesta)',p:'R$ 18,00'},
+ {n:'Pan + Tumaca + Alioli',p:'R$ 22,00'}
+]},
+
+/* ── ENSALADAS — confirmado (print oficial; 2 itens) ── */
+{id:'ensaladas',group:'picar',es:'Ensaladas',items:[
+ {n:'Ensalada Verde',d:'Com queijo fresco, abacate e pesto de tomate seco.',p:'R$ 52,00'},
+ {n:'Escalivada Catalana',d:'Beringela, cebola e pimentão vermelho defumados artesanalmente com provoleta grelhado e muito azeite extra-virgem. Acompanha pães quentininhos.',p:'R$ 50,00'}
+]},
+
+/* ── TABLAS DE EMBUTIDOS — confirmado (print oficial; preço sob consulta) ── */
+{id:'tablas',group:'picar',es:'Tablas de Embutidos',items:[
+ {n:'Tablas de Embutidos, con cesta de pan y tumaca',d:'Jamón Serrano 150g – R$ 72 · jamón y parmesano – R$ 75 · Jamón Pata Negra – R$ 100 · surtido ibérico – R$ 97 · quesos diversos – R$ 77.',p:'Favor solicitar valores ao atendente'}
+]},
+
+/* ── TORTILLAS — confirmado (print oficial; preço sob consulta) ── */
+{id:'tortillas',group:'terra',es:'Tortillas',pt:'¡Las españolas y verdaderas!',items:[
+ {n:'Tortillas 450g',d:'Tortilla Clássica, só batata e ovos. R$ 64,00 | Com Chorizo Ibérico e Pimentões R$ 68,00 | Com Jamón Serrano R$ 68,00 | Com Gorgonzola e abobrinha salteada R$ 68,00 | Com Camarões e Alho Poró salteados R$ 69,00 | Com cogumelos e cenouras salteada…',p:'Favor solicitar valores ao atendente'}
+]},
+
+/* ── LOS PESCADOS — confirmado (print oficial; 5 itens) ── */
+{id:'pescados',group:'terra',es:'Los Pescados',pt:'¡Siempre frescos!',items:[
+ {n:'Ceviche de Peixe Branco com Romã e Caju',d:'180g.',p:'R$ 71,00'},
+ {n:'Pescado del Día a la Plancha',d:'Com verduras refogadas ou batata palha artesanal e cebolinhas glaceadas em shoyu. 200g.',p:'R$ 79,00'},
+ {n:'Tartar de Atum',d:'Com mousse de abacate e batatas chips artesanais.',p:'R$ 70,00'},
+ {n:'Tataki de Atum',d:'Com molho de abacates e tomates fritos. 200g.',p:'R$ 72,00'},
+ {n:'Zarzuela de Mar',d:'Um grelhado misto de mar: mini postas de peixes fresquíssimos, polvo, camarão e lula, com guarnição de purê de batata-doce e cenoura. 380g.',p:'R$ 119,00'}
+]},
+
+/* ── LAS CARNES — confirmado (print oficial; 3 itens) ── */
+{id:'carnes',group:'terra',es:'Las Carnes',pt:'¿Qué punto prefieres?',items:[
+ {n:'Carne Angus del Día',d:'Acompanhado de mix de cogumelos, nibs de cacau e redução de vinho tinto. 220g.',p:'R$ 110,00'},
+ {n:'Escalopines de Solomillo al Chimichurri',d:'Filé mignon grelhado acompanhado com batata palha artesanal ou legumes crocantes salteados, servido com molho chimichurri caseiro e cebolletes glaceados em shoyu. 200g.',p:'R$ 83,00'},
+ {n:'Picaña Especial a la Plancha',d:'Com pimentão vermelho e batata palito caseira.',p:'R$ 135,00'}
+]},
+
+/* ── LOS ARROCES — confirmado (print oficial; 6 itens) ── */
+{id:'arroces',group:'terra',es:'Los Arroces',pt:'¡Precio por persona!',items:[
+ {n:'Arroz Caldoso de Polvo Servido en Caçarola',d:'Nosso arroz meloso de polvo, servido em caçarola, bem molhadinho! 220g por pessoa.',p:'R$ 79,00'},
+ {n:'Arroz Negro de Calamar',d:'Arroz com tinta de lula importada, lula, camarão e mexilhão, uma das iguarias mais elogiadas da casa! Feito com autêntico arroz espanhol, acompanhado de molho de alioli. Contém lactose no alioli. 220g por pessoa.',p:'R$ 81,00'},
+ {n:'Fideuà a la Marinera',d:'Como a Paella, porém feito com fideuà (cabelo de anjo). 220g por pessoa.',p:'R$ 78,00'},
+ {n:'Paella Marinera',d:'A grande estrela da casa, com frutos do mar (lula, polvo, camarão, peixe fresco e mexilhão), arroz espanhol e a receita familiar do chef! Super bem servido, acompanha nosso alioli exclusivo. Lactose no alioli. 220g por pessoa.',p:'R$ 79,00'},
+ {n:'Paella Mixta',d:'Paella com frutos do mar (lula, polvo, camarão, peixe fresco e mexilhão), arroz espanhol e chorizo espanhol. Acompanha nosso alioli exclusivo (contém lactose). 220g por pessoa.',p:'R$ 82,00'},
+ {n:'Paella Vegetariana',d:'Nossa opção de paella vegana, rica e saborosa! Mistura de vegetais super frescos, cogumelos, mini cebolas glaceadas. Acompanha o alioli, que é vegetariano e tem lactose. 220g por pessoa.',p:'R$ 72,00'}
+]},
+
+/* ── DRINKS Y CÓCTELES — confirmado (print oficial) ── */
+{id:'drinks',group:'coct',es:'Drinks y Cocteles',items:[
+ {n:'Aperol Spritz',d:'Aperol, espumante, laranja, água com gás e gelo.',p:'R$ 33,00'},
+ {n:'Caipiriñas: pregunta qué frutos tenemos hoy!!',d:'2 doses de cachaça e sua fruta preferida! Frutas especiais: +R$ 4,00.',p:'R$ 28 / R$ 31'},
+ {n:'Caipiroska: pregunta qué frutos tenemos hoy!',d:'2 doses de vodka, fruta, açúcar e gelo. Skyy R$ 32 · Absolut R$ 36. Frutas especiais: +R$ 4,00.',p:'R$ 32 / R$ 36'},
+ {n:'Cosmopolitan',d:'Vodka, xarope de cranberry, limão taiti e triple sec. Skyy R$ 34 · Absolut R$ 39.',p:'R$ 34 / R$ 39'},
+ {n:'Cuervo Margarita',d:'Tequila José Cuervo Special Silver, Cointreau, zumo de limón e borda de sal.',p:'R$ 37,00'},
+ {n:'Cuervo Muletta',d:'Tequila José Cuervo Especial Gold, xarope de açúcar, limão e espuma de gengibre.',p:'R$ 37,00'},
+ {n:'Fitzgerald',d:'Gin, limão siciliano, xarope simples e angostura.',p:'R$ 36 / R$ 42'},
+ {n:'Gin Tônica — Clássicos',d:'2 doses de gin, água tônica, limão taiti e gelo! Gin Tônica Estándar R$ 36 · Premium R$ 42.',p:'R$ 36 / R$ 42'},
+ {n:'Manhattan',d:'Whiskey americano, vermute tinto, bitter e zeste de laranja. Estándar R$ 36 · Premium R$ 42.',p:'R$ 36 / R$ 42'},
+ {n:'Mojito de la Taperia',d:'2 doses de rum branco, hortelã fresca, limão taiti, água com gás, xarope simples e gelo. Bacardi R$ 27 · Premium R$ 31.',p:'R$ 27 / R$ 31'},
+ {n:'Moscow Mule',d:'Vodka, xarope de gengibre, limão siciliano, água com gás, espuma de gengibre e gelo. Skyy R$ 36 · Absolut R$ 41.',p:'R$ 36 / R$ 41'},
+ {n:'Negroni',d:'Gin, campari, vermute tinto e gelo. Estándar R$ 36 · Premium R$ 42.',p:'R$ 36 / R$ 42'},
+ {n:'Tinto/Blanco de Verano',d:'Blanco: vinho branco, citrus, limão, morango e gelo. Tinto: vinho tinto, citrus, limão, laranja e gelo.',p:'R$ 23,00'}
+]},
+
+/* ── JARRAS CON ALCOHOL — confirmado (print oficial) ── */
+{id:'jarras-con',group:'coct',es:'Jarras con Alcohol',items:[
+ {n:'Jarra de Sangría 750ml',d:'Todos los sabores!',p:'R$ 53,00'},
+ {n:'½ Jarra Aperol Spritz',d:'750ml.',p:'R$ 50,00'},
+ {n:'½ Jarra Mojito',d:'750ml.',p:'R$ 50,00'},
+ {n:'Aperol Spritz',d:'A jarra de 1,5 litros do nosso delicioso Aperol Spritz, perfeita pra compartilhar!',p:'R$ 73,00'},
+ {n:'Jarra de Tangibau',d:'Nosso drink sensación virou jarra! Vodka, tangerina, baunilha e manjericão.',p:'R$ 75,00'},
+ {n:'Mojito Especial con Fresas',d:'Rum branco, limão taiti, hortelã fresca, morango, Schweppes Citrus e gelo. Rende aprox. 4 taças · 1,5L.',p:'R$ 75,00'},
+ {n:'Sangría Blanca de Fresas y Limón Siciliano',d:'Com vinho branco, mix de licores, morango, limão siciliano e Schweppes Citrus. Rende aprox. 4 taças.',p:'R$ 77,00'},
+ {n:'Sangría de Cava con Frutas Surtidas y Burbujas',d:'Com espumante brut, mix de licores, manga, maçã, goiaba, canela em pau e Schweppes Citrus. Rende aprox. 4 taças.',p:'R$ 77,00'},
+ {n:'Sangría de Vino Tinto la Clásica con Frutas Surtidas',d:'Com vinho tinto, mix de licores, manga, maçã, goiaba, canela em pau e Schweppes Citrus. Rende aprox. 4 taças. Meia jarra disponível — consulte o valor.',p:'R$ 74,00'},
+ {n:'Sangría Tropical',d:'Sangría com vinho branco, morango com limão, tangerina e Red Bull. Rende aprox. 4 taças.',p:'R$ 82,00'}
+]},
+
+/* ── JARRAS SIN ALCOHOL — confirmado (print oficial) ── */
+{id:'jarras-sin',group:'coct',es:'Jarras Sin Alcohol',items:[
+ {n:'Água de Coco Natural',d:'Jarra de 750ml.',p:'R$ 28,00'},
+ {n:'Limonada con Gengibre',d:'1,5L R$ 48 · Meia jarra R$ 32.',p:'R$ 49,00'},
+ {n:'Limonada Rosa',d:'Limonada com cereja e xarope de rosas! 1,5L R$ 49 · Meia jarra R$ 34.',p:'R$ 50,00'},
+ {n:'Limonada Siciliana con Miel',d:'1,5L R$ 52 · Meia jarra R$ 34.',p:'R$ 52,00'},
+ {n:'Sangria Sin Alcohol',d:'Com suco de uva integral, tinto ou branco. Rende aprox. 4 taças. Meia jarra R$ 44,00.',p:'R$ 59,00'}
+]},
+
+/* ── COCTELES SIN ALCOHOL — readicionada (print oficial) ── */
+{id:'coct-sin',group:'coct',es:'Cocteles Sin Alcohol',items:[
+ {n:'Cacauzin',d:'Mel de cacau, gengibre, albumina, limão e canela.',p:'R$ 25,00'},
+ {n:'Mentiroskas (¡Pregunta las frutas del día!)',d:'Fruta elegida, jarabe de azúcar y agua mineral. Las frutas especiales por más +4,00!',p:'R$ 24,00'},
+ {n:'Mix Tropical',d:'Piña (abacaxi), menta, limón, jengibre y soda.',p:'R$ 24,00'},
+ {n:'Tangibau',d:'Cordial de tangerina, limón, vainilla y albahaca.',p:'R$ 24,00'}
+]},
+
+/* ── CERVEZAS ARTESANALES ☆ LONG NECK ☆ CHOPPS — confirmado (print oficial) ── */
+{id:'cervezas',group:'barra',es:'Cervezas Artesanales',pt:'Long neck · Chopp',items:[
+ {n:'1906 Reserva Especial',d:'Com uma concentração de 15° Plato e um volume de 6,5% Vol. Alc., esta cerveja foi elaborada através de uma cuidadosa seleção de maltes especiais e lúpulos das variedades Perle, Hallertau e Nugget, que lhe conferem aroma e amargor bem equilibrados.',p:'R$ 22,00'},
+ {n:'Baden Baden Cristal',d:'Pilsen saborosa, leve e refrescante, com aroma floral do lúpulo e leve dulçor dos maltes especiais.',p:'R$ 34,00'},
+ {n:'Baden Baden Golden',d:'Cerveja tipo ale diferenciada, com sabor adocicado, coloração dourada e aroma marcante de canela e frutas vermelhas.',p:'R$ 34,00'},
+ {n:'Baden Baden IPA',d:'American India Pale Ale de amargor intenso, com aromas de maracujá e cítrico, provenientes dos lúpulos e da adição de suco da fruta.',p:'R$ 34,00'},
+ {n:'Blue Moon',p:'R$ 19,00'},
+ {n:'Chopp Heineken',d:'Temos também a opção do chopp Clara, bebida muito comum na Espanha, onde se mistura metade refrigerante de limão e metade cerveja. Bebida muito comum no verão! Aproveite para provar!',p:'R$ 18,00'},
+ {n:'Eisenbahn IPA Long Neck',d:'Com coloração âmbar e amargor potente, a Eisenbahn American IPA 355ml tem seu sabor equilibrado com notas cítricas e teor alcoólico elevado (6,9%). A receita, de rótulo azul, leva doses extras de lúpulos.',p:'R$ 14,00'},
+ {n:'Eisenbahn Pilsen Long Neck',d:'A Eisenbahn Pilsen 355ml foi desenvolvida para agradar a todos os paladares: a cerveja tipo Pilsen é a mais conhecida no Brasil e a mais consumida no mundo. É uma cerveja claríssima do tipo Lager.',p:'R$ 14,00'},
+ {n:'Heineken Long Neck',d:'Fabricada em tanques horizontais para mais sabor e consistência — é por isso que nenhuma outra cerveja tem o gosto de Heineken. Na icônica versão Long Neck de 330ml, possui teor alcoólico de 5%.',p:'R$ 16,00'},
+ {n:'Heineken Zero Álcool',d:'Cerveja sem álcool.',p:'R$ 15,00'},
+ {n:'Lagunitas',p:'R$ 20,00'},
+ {n:'PROA Carrie Nation IPA',d:'Lembra do movimento pré-prohibition nos EUA? Carrie Nation ficou famosa por destruir barris de cerveja com seu machado. Essa American India Pale Ale é uma cerveja intensa, feita para fazer Carrie Nation se revirar no caixão.',p:'R$ 34,00'},
+ {n:'PROA Íris American Pale Ale',d:'Com uma combinação improvável dos lúpulos BRU-1, Cascade, Azacca e Zeus, traz complexidade de aromas e sabores com predominância de abacaxi, manga e lichia. Cerveja viva e lupulada, para ser consumida fresca. Teor alcoólico: 5,9%.',p:'R$ 34,00'},
+ {n:'PROA Vienna Lager',d:'Vienna é o primeiro estilo de cerveja do mundo a utilizar maltes mais claros, uma revolução entre as cervejas alemãs da sua época. Foram praticamente extintas até o estilo ser revivido pelos cervejeiros artesanais americanos na década de 80.',p:'R$ 34,00'}
+]},
+
+/* ── GINS DEL ZODÍACO — confirmado (print oficial) ── */
+{id:'gins',group:'barra',es:'Gins del Zodíaco',pt:'Gin Tônica dos Signos',note:'Um mix para cada signo do zodíaco.',items:[
+ {n:'01 Gin Tônica dos Signos – Áries',d:'Gin, manjericão, lâminas de pepino, gengibre e tônica.',p:'R$ 37,00'},
+ {n:'02 Gin Tônica dos Signos – Touro',d:'Gin, xarope de maçã verde, maçã verde e tônica.',p:'R$ 37,00'},
+ {n:'03 Gin Tônica dos Signos – Gêmeos',d:'Gin, abacaxi, infusão de capim-santo, limão siciliano e tônica.',p:'R$ 37,00'},
+ {n:'04 Gin Tônica dos Signos – Câncer',d:'Gin pink, fatias de morango, laranja e tônica.',p:'R$ 37,00'},
+ {n:'05 Gin Tônica dos Signos – Leão',d:'Gin, hibisco, limão siciliano e tônica.',p:'R$ 37,00'},
+ {n:'06 Gin Tônica dos Signos – Virgem',d:'Gin, fatias de laranja, pimenta rosa, tônica e perfume da Bahia de Todos os Santos.',p:'R$ 37,00'},
+ {n:'07 Gin Tônica dos Signos – Libra',d:'Gin, mix de cítricos, tangerina, cardamomo, tônica e perfume da Taperia.',p:'R$ 37,00'},
+ {n:'08 Gin Tônica dos Signos – Escorpião',d:'Gin, gengibre, hortelã, limão taiti e tônica.',p:'R$ 37,00'},
+ {n:'09 Gin Tônica dos Signos – Sagitário',d:'Gin, caju, limão taiti, pimenta do reino e tônica.',p:'R$ 37,00'},
+ {n:'10 Gin Tônica dos Signos – Capricórnio',d:'Gin, romã, limão siciliano e tônica.',p:'R$ 37,00'},
+ {n:'11 Gin Tônica dos Signos – Aquário',d:'Gin, cordiais artesanais de maracujá e morango, infusão de capim-santo e tônica.',p:'R$ 37,00'},
+ {n:'12 Gin Tônica dos Signos – Peixes',d:'Gin, fatias de manga, laranja, tônica e perfume da Bahia de Todos os Santos.',p:'R$ 37,00'}
+]},
+
+/* ── DESTILADOS Y ETC ☆ 50ML — confirmado (print oficial) ── */
+{id:'destilados',group:'barra',es:'Destilados y Etc',pt:'Doses de 50ml',items:[
+ {n:'Apertivos y Porto',d:'Averna R$ 24 · Cynar R$ 15 · Aperol R$ 17 · Campari R$ 18 · Lillet/Lillet Rosé R$ 24 · Martini Rosso R$ 18 · Martini Bianco R$ 18 · Martini Dry R$ 18 · Vermú Caju R$ 22 · Jerez La Guita R$ 24 · Jerez Real Tesoro R$ 24.',p:'Consulte o atendente'},
+ {n:'Cachaças',d:'Seleta R$ 19 · Kiricó R$ 17 · Kiricó Amburana R$ 18 · Matiarca Cristal R$ 20 · Matiarca Bálsamo R$ 20 · Matiarca Jaqueira R$ 20 · Matiarca Amburana R$ 20.',p:'Consulte o atendente'},
+ {n:'Ginebras',d:'Tanqueray R$ 26 · Aviator R$ 25 · Aviator 42 R$ 26 · Beefeater R$ 26.',p:'Consulte o atendente'},
+ {n:'Licores',d:'Licor 43 R$ 25 · Fireball R$ 25 · Baileys R$ 25 · Drambuie R$ 22 · Cointreau R$ 25 · Limoncello R$ 24 · Jägermeister R$ 25 · Frangelico R$ 25.',p:'Consulte o atendente'},
+ {n:'Rones',d:'Havana Club 3 Años R$ 23 · Bacardí Blanco R$ 20 · Bacardí Gold R$ 22 · Barbados 1651 Spiced R$ 25.',p:'Consulte o atendente'},
+ {n:'Tequilas',d:'José Cuervo Especial Silver R$ 23 · José Cuervo Especial Gold R$ 25 · José Cuervo Tradicional (100% agave) R$ 32.',p:'Consulte o atendente'},
+ {n:'Vodkas',d:'Skyy R$ 21 · Smirnoff R$ 22 · Absolut R$ 25 · Absolut Extract R$ 26.',p:'Consulte o atendente'},
+ {n:'Whiskys',d:'JW Red Label R$ 25 · JW Black Label R$ 29 · JW Double Black R$ 36 · JW Gold Label R$ 38 · Chivas Regal 12 R$ 29 · Ballantine\'s 12 R$ 23 · Old Parr 12 R$ 28 · Jack Daniel\'s R$ 25 · Jack Daniel\'s Honey R$ 25 · Jameson R$ 28 · Black & White R$ 22 · Glenmorangie R$ 46 · Lamas Nimbus R$ 40 · Lamas Rarus R$ 40.',p:'Consulte o atendente'}
+]},
+
+/* ── CHUPITOS — confirmado (print oficial) ── */
+{id:'chupitos',group:'barra',es:'Chupitos',items:[
+ {n:'Todos pelo mesmo valor!',d:'N° 7 · Licor de cassis, limão e Red Bull | N° 14 · Cachaça, mel e limão | N° 15 · Xarope de gengibre, limão siciliano e gin | N° 16 · Licor de chocolate, maracujá e rum | N° 21 · Licor de café, tabasco e tequila | N° 22 · Licor de café, Baileys Scotch Whisky…',p:'R$ 19,00'},
+ {n:'Mini Beer 43',d:'Shot de licor con chantilly.',p:'R$ 26,00'}
+]},
+
+/* ── CAVAS — confirmado (print oficial) ── */
+{id:'cavas',group:'bodega',es:'Cavas',items:[
+ {n:'Cava del Día',d:'Por taça 150ml.',p:'R$ 30,00'},
+ {n:'Freixenet Cordón Negro Brut',d:'Lançado originalmente em 1974, o Freixenet Cordón Negro é leve, apreciado por seu grande frescor e conhecido mundialmente por sua emblemática garrafa preta e dourada. Com aromas de frutas cítricas e acidez equilibrada.',p:'R$ 130,00'},
+ {n:'Freixenet Rosé',d:'Inconfundível por sua viva coloração rosada e pelos suaves aromas florais e de frutas vermelhas, o Cava Freixenet Rosado Brut apresenta um paladar leve e fresco. Elaborado com coupage das variedades de uvas Trepat e Garnacha, harmoniza com peixes.',p:'R$ 120,00'},
+ {n:'Freixenet Zero Álcool',d:'Espumante espanhol sem álcool, elaborado com Moscatel. Aromático, leve e ideal para pratos leves, entradas e sobremesas.',p:'R$ 122,00'}
+]},
+
+/* ── VINOS TINTOS — parcial (37 itens; +2 do print: Walk the Line e Yllera 9 meses) ── */
+{id:'tintos',group:'bodega',es:'Vinos Tintos',items:[
+ {n:'Alegro Crianza',d:'Região: Espanha. Produto: tinto. Uvas: Tempranillo e Garnacha. Notas de cor: vermelho intenso e profundo. Notas olfativas: nariz complexo, frutas pretas, alcaçuz, notas de especiarias e chocolate. Notas gustativas: redondo.',p:'R$ 205,00'},
+ {n:'Alegro Tempranillo',d:'Uva: 100% Tempranillo. Região/País: Rioja/Espanha. Com cor vermelha com iridescência granada, de média intensidade, e aroma de fruta preta, alcaçuz, chocolate e especiarias. Em paladar é um vinho elegante, redondo, agradável e com final de boca longo.',p:'R$ 145,00'},
+ {n:'Artero',d:'Coloração rubi com halo violáceo. Aromas de romã madura, groselhas e amoras, sobre notas de ervas e folhagem úmida. Paladar de impacto macio e frutado, com ótimo equilíbrio e agradável final. Região/País: La Mancha/Espanha. Uva: 100% Tempranillo.',p:'R$ 150,00'},
+ {n:'Aurea Pittacum',d:'Pittacum Aurea, um vinho tinto espanhol premium de Bierzo! Com aromas intensos de frutas escuras, especiarias e notas minerais, e um sabor potente e elegante, ele é perfeito para momentos especiais. Ideal para harmonizar com carnes e queijos.',p:'R$ 450,00'},
+ {n:'Barose Tempranillo',d:'Uva: 100% Tempranillo. Região/País: Castilla y León. Com tom vermelho intenso, brilhante, com iridescência granada, e aroma intenso a frutos vermelhos e especiarias. Na boca é um vinho equilibrado, elegante e expressivo, muito fácil de beber.',p:'R$ 120,00'},
+ {n:'Cala 1',d:'Seu rótulo é moderno, traz a imagem de cada rosto que contribui no processo de elaboração deste vinho e apresenta uma profunda relação com o objetivo da Tinedo: vinho como cultura. Esse é o resultado do trabalho integrado do homem com a terra.',p:'R$ 220,00'},
+ {n:'Cepas Selecionadas Teroldego',d:'Vinho elaborado somente em safras propícias para a elaboração de vinhos longevos. Larentis Cepas Selecionadas Teroldego tem passagem por barricas, é estruturado, equilibrado, macio e generoso.',p:'R$ 220,00'},
+ {n:'Cinco Viñas Cabernet Sauvignon',d:'Em boca é um vinho equilibrado com boa acidez e taninos suaves, um ótimo e bem preparado vinho espanhol. Harmonização: carnes vermelhas assadas e queijos duros.',p:'R$ 135,00'},
+ {n:'Dominia de la Abadesa',d:'Vermelho-rubi intenso. Aromas de cereja, framboesa, especiarias doces, baunilha, leve tostado. Em boca, tem corpo médio, boa concentração de fruta, taninos macios, acidez equilibrada e final persistente. Um Ribera del Duero jovem e harmonioso.',p:'R$ 200,00'},
+ {n:'Freixenet Tempranillo',d:'Vinho vegano elaborado com uma seleção de uvas Tempranillo de diferentes vinhedos, procedentes de Rioja Alavesa e Rioja Alta. Versátil para todos os momentos e agradável ao paladar, uma ótima harmonização com jamón, salames e queijos curados.',p:'R$ 175,00'},
+ {n:'Heracio Alfaro Finca Estarijo',d:'O Vinho Tinto Heracio Alfaro Finca Estarijo 2016 é um Rioja Crianza requintado. O envelhecimento de 16 meses em barricas confere-lhe uma complexidade única e de dar água na boca, que certamente irá satisfazer o paladar de qualquer apreciador.',p:'R$ 290,00'},
+ {n:'Legado Muñoz',d:'O Legado Muñoz exibe toda a tipicidade da Garnacha, com seus aromas vibrantes de framboesas e morangos frescos, ervas mediterrânicas, notas de moka e especiarias. Macio, redondo, muito acessível, com taninos leves e bela intensidade de sabor.',p:'R$ 150,00'},
+ {n:'Luis Cañas',d:'Coloração rubi de média transparência, borda violácea. Focado nos aromas frutados, vinoso e floral. Leve, suculento, para muitos goles. Uvas: 90% Tempranillo, 10% Viura.',p:'R$ 175,00'},
+ {n:'Más de 5 Viñas Premium',d:'Vinho de cor vermelho rubi, com notas olfativas de frutas negras, alcaçuz, chocolate e especiarias. Notas gustativas: elegante, com aromas intensos de frutas, bem integrado. Uvas: 100% Tempranillo. Teor alcoólico: 13%. Safra: 2018.',p:'R$ 135,00'},
+ {n:'Merlot Broto 2023',d:'Se mostra muito equilibrado, podendo ser degustado de imediato e também trazendo surpresas para quem tiver tempo e paciência para guardá-lo um pouco mais. Vibrante, vivo, repleto de potencial.',p:'R$ 210,00'},
+ {n:'Navarra Crianza',d:'O Vinho 111 Crianza apresenta coloração vermelho granada, intenso e profundo. Mostra aroma expressivo, que se destaca por suas nuances de envelhecimento, especiarias e aromas de frutas maduras. Em boca tem corpo médio e complexo.',p:'R$ 180,00'},
+ {n:'Navarra Garnacha',d:'Região: D.O. Navarra – Espanha. Cor: vermelha com iridescência granada de média intensidade. Olfato: fresco, com aromas de frutas pretas, alcaçuz, chocolate e especiarias. Paladar: elegante, redondo, agradável e com um final de boca longo.',p:'R$ 140,00'},
+ {n:'Navarra Tempranillo',d:'Uva: Tempranillo. Região: D.O. Navarra – Espanha. Cor: vermelha com iridescência granada de média intensidade. Olfato: fresco, com aromas de frutas pretas, alcaçuz, chocolate e especiarias. Paladar: elegante, redondo, agradável, com final de boca longo.',p:'R$ 130,00'},
+ {n:'Orube Botella Magnum 1,5L',d:'O Vinho Orube Crianza é predominantemente elaborado com a uva Tempranillo, com possível inclusão de outras variedades que complementam seu perfil. O vinho passa por um envelhecimento em barricas de carvalho, que lhe confere complexidade.',p:'R$ 420,00'},
+ {n:'Orube Crianza',d:'Orube Crianza é o resultado de um blend de variedades típicas de Rioja, com intuito de mostrar a autenticidade dos poderosos e renomados vinhos dessa região em uma versão contemporânea e descomplicada para agradar a todos os paladares.',p:'R$ 200,00'},
+ {n:'Pata Negra Tempranillo',d:'O Pata Negra Oro é um tinto espanhol que encanta com a sua elegância e sofisticação. Com uma cor rubi violáceo vibrante, oferece aromas sedutores de cacau, caramelo e frutas maduras, com um toque refinado de carvalho. Seu sabor é seco e bem equilibrado.',p:'R$ 120,00'},
+ {n:'Petit Pittacum',d:'Bodegas Pittacum é uma vinícola moderna, inaugurada em 1999, quando a região de Bierzo despontava como uma das novas promessas do vinho espanhol. Situa-se na pitoresca aldeia de Arganza, com longa tradição vitivinícola.',p:'R$ 165,00'},
+ {n:'Petit Pittacum Bierzo',d:'O Petit Pittacum 2020 é um vinho tinto espanhol da região do Bierzo, elaborado 100% com a uva Mencía pela Bodegas Pittacum. É um vinho fresco, frutado e equilibrado, com notas de frutas pretas maduras, cereja e baunilha. Apresenta estrutura macia e redonda.',p:'R$ 240,00'},
+ {n:'Petit Vega 28 Meses',d:'Vinho tinto espanhol de Ribera del Duero, 100% Tempranillo. Envelhecido 28 meses em carvalho francês. Estruturado, com aromas de frutas negras e cacau.',p:'R$ 420,00'},
+ {n:'Riccitelli Hey! Malbec',d:'Experimente a expressão contemporânea da uva Malbec com o Riccitelli Hey! Malbec. Este vinho oferece uma explosão de sabores de frutas negras, toques de violetas e pimenta verde, criando uma dança de sabores no paladar. Seus taninos são macios.',p:'R$ 230,00'},
+ {n:'Riccitelli Malbec',d:'Notas puras de framboesa selvagem e ameixa madura, com toques de frutas, são cobertas com delicadas notas florais. Liso e sedoso, com taninos finos, este é um Malbec de grande elegância.',p:'R$ 180,00'},
+ {n:'Sangue Latino',d:'Um Trebbiano que nasceu na Serra Gaúcha, mas desce pro mar com alegria e frescor. É ideal para tardes de sol, pés na água e conversas boas, mas sem perder a complexidade que só o tempo em contato com as cascas pode dar.',p:'R$ 210,00'},
+ {n:'Sardón Tinto',d:'Sardón é um vinho tinto envelhecido sob a denominação de origem V.T. Castilla y León. É produzido pela vinícola Quinta Sardonía, parte das Bodegas Terras Gauda. É um vinho para apreciação imediata, bem estruturado.',p:'R$ 220,00'},
+ {n:'Siendra',d:'Notas de frutas vermelhas e pretas, especiarias e notas secundárias, provenientes das barricas. Vinho de corpo médio, seco, nível médio de taninos, acidez média. Uvas: Garnacha, Syrah, Cabernet Sauvignon, Merlot.',p:'R$ 205,00'},
+ {n:'Solar Viejo Crianza',d:'Possui aromas de cedro, tabaco, grafite, folhas de chá, fragrâncias de ameixa madura, mirtilo e cereja, notas de laranja, canela, trufas negras e tostados. Paladar aveludado, agradável equilíbrio entre acidez e taninos adocicados em fruta madura.',p:'R$ 200,00'},
+ {n:'Solar Viejo Reserva',d:'Possui coloração vermelho rubi, com reflexos vermelhos pálidos e rosáceos. Aromas dominados por notas de especiarias, fruta negra madura, frutos silvestres maduros e frutas em licor envolvidas com aromas de baunilha. Em boca é suave e redondo.',p:'R$ 220,00'},
+ {n:'Solar Viejo Tempranillo',d:'Alta intensidade aromática, ressaltada por aromas de frutas vermelhas. Na boca é leve e fresco. Tanto o álcool quanto a acidez são equilibrados, característicos dessa safra. No final, são evidentes notas de frutas mais intensas. Harmonização: carnes, massas.',p:'R$ 175,00'},
+ {n:'Valmariono Shiraz 2020',d:'Este vinho foi um resgate da variedade Sangiovese que já foi muito cultivada na Serra Gaúcha e hoje encontra-se em quantidade reduzida. Um vinho com estilo, para ser servido jovem, mas que ganha muito com seu envelhecimento.',p:'R$ 220,00'},
+ {n:'Vino por Copa 150ml',p:'R$ 32,00'},
+ {n:'Vizar Tempranillo',d:'Visual: vermelho cereja escuro, com tons de violeta. Aromas: intensos de frutas vermelhas como framboesa, groselha e ameixa preta; toques exóticos de pimenta e menta. Paladar: sabor frutado que denota frescor e juventude. Boa estrutura e final.',p:'R$ 185,00'},
+ {n:'Walk the Line',d:'Esse rótulo se destaca por ser um vinho vivo (natural) de cultivo sustentável, não filtrado, com fermentação que remete ao clássico estilo francês passe-tout-grain. Ideal para quem busca um tinto descomplicado, refrescante e com muita personalidade.',p:'R$ 210,00'},
+ {n:'Yllera 9 meses',d:'País: Espanha. Região: D.O. Castilla y León. Uva: Tempranillo. Teor alcoólico: 13,5%. Amadurecimento: 09 meses. Visual: vermelho intenso com tons violetas. Olfativo: ao nariz, é perfumado, com aromas de frutas vermelhas como framboesas, mirtilos e…',p:'R$ 190,00'}
+]},
+
+/* ── VINOS BLANCOS — confirmado (print oficial; 16 itens) ── */
+{id:'blancos',group:'bodega',es:'Vinos Blancos',items:[
+ {n:'Alegro Tempranillo Branco',d:'O Vinho Alegro Viura mostra coloração amarelo limão intenso, limpo e brilhante. Notas aromáticas são típicas da uva Viura, com notas de maçã verde e limão. Em boca seu sabor é fresco a frutas brancas.',p:'R$ 145,00'},
+ {n:'Aradon Rioja Branco',d:'Belo Espanhol aromático e muito agradável. Notas de flores brancas e frutas cítricas. O paladar é refrescante e equilibrado. Acidez presente e harmônica, harmonizando muito bem com carne branca, peixe, massa e queijo leve.',p:'R$ 180,00'},
+ {n:'Artero Macabeo y Verdejo',d:'Inserida na D.O. La Mancha, a Bodegas Artero foi fundada em 1940, em Noblejas, na província de Toledo. A sustentabilidade é um aspecto primordial na propriedade, que preza pela eficiência energética, o bom gerenciamento dos recursos hídricos e o cuidado…',p:'R$ 150,00'},
+ {n:'Barose Viura',d:'Com tons de amarelo limão, limpo e brilhante, e notas olfativas de maçã verde limão muito presente. Este vinho possui frescor de frutas brancas. Uva: 100% Viura. Região/País: Castilla y León.',p:'R$ 120,00'},
+ {n:'Cão Perdigueiro Sauvignon Blanc',d:'Olfato: Aromas deliciosos e intensos de frutas tropicais, como manga, maracujá, abacaxi e goiaba, escoltadas por pêssego e lima. Paladar: Frutado e muito suculento, tem notas de frutas tropicais e ervas de quintal dominando o palato num conjunto muito…',p:'R$ 150,00'},
+ {n:'Castillo de Jumilla Blanco',d:'O Castillo de Jumilla Blanco é um vinho branco espanhol fresco e suave, ideal para acompanhar uma refeição leve. Com cores de palha e amarelo pálido e intensos tons de verde, traz aroma poderoso e elegante com memória complexa de variedades de ervas e…',p:'R$ 135,00'},
+ {n:'Cepas Tradicional',d:'Vinho equilibrado, fresco, macio e fácil de agradar. Frequentemente, usam Cabernet Sauvignon para trazer estrutura e aromas de frutas negras, Malbec com notas de violeta, Merlot para aportar maciez e taninos aveludados e Pinot Noir, que dá delicadeza e…',p:'R$ 145,00'},
+ {n:'Cinco Viñas Blanco Semidulce',d:'O Vinho Cinco Viñas Blanco Semidulce apresenta coloração vermelho cereja. Mostra aroma floral onde se destacam as notas de fruta madura. Em boca é suave, adocicado e untuoso, com bom equilíbrio entre doçura e frescor.',p:'R$ 120,00'},
+ {n:'Dandelion Chardonnay',d:'Vinho argentino branco orgânico varietal da Chardonnay. Aromas tropicais com leves notas cítricas e florais. Na boca apresenta corpo médio e acidez bem equilibrada. Combina com frutos do mar ao molho branco, preparados na manteiga ou grelhados, prato…',p:'R$ 118,00'},
+ {n:'Luis Cañas Blanco Viura y Malvasia',d:'Luis Cañas é sinônimo de excelência na Rioja, uma das bodegas mais respeitadas da região. Feito com Viura e Malvasia, este é um branco surpreendente, com aromas frescos de fruta branca, limão, toques de ervas e flores brancas. Leve, suculento, com acidez…',p:'R$ 175,00'},
+ {n:'Nuestro Verdejo',d:'Vinho branco elaborado na Denominação de Origem Rueda, com a uva Verdejo. É fresco, floral e persistente.',p:'R$ 150,00'},
+ {n:'Pata Negra Oro Branco',d:'Pata Negra Oro Branco é um vinho branco seco espanhol da região de Valdepeñas, produzido pelo grupo García Carrión. Feito com a uva Airén, apresenta notas de frutas cítricas e brancas, corpo leve e teor alcoólico de cerca de 12,5%, sendo ideal para acompanha…',p:'R$ 120,00'},
+ {n:'Val de Resa Garnacha Blanca',d:'Cor laranja dourada clara, com reflexos amarelos suaves. É um vinho muito aromático com notas florais e frutos tropicais de abacaxi. Na boca é uma autêntica explosão aromática de frutas cítricas com notas de tangerina, toranjas, tomilho e pimenta…',p:'R$ 190,00'},
+ {n:'Valdubón Verdejo',d:'O Valdubón Verdejo 2022 é um vinho branco espanhol da denominação de origem Rueda, conhecido por seus aromas tropicais e herbáceos, com notas de anis e hinojo. É um vinho fresco, com boa acidez e um toque amargo característico da uva Verdejo, ideal…',p:'R$ 190,00'},
+ {n:'Viña Esmeralda',d:'Branco composto de Moscatel e Gewürztraminer, sem passagem por madeira. Aromático e nítido, é repleto de frutas brancas e cítricas, seguidas de notas florais e de ervas, tudo em um conjunto muito equilibrado, com acidez vibrante e textura cremosa. O…',p:'R$ 160,00'},
+ {n:'Vino por Copa 150ml',p:'R$ 32,00'}
+]},
+
+/* ── VINOS ROSADOS — confirmado (print oficial; 3 itens) ── */
+{id:'rosados',group:'bodega',es:'Vinos Rosados',items:[
+ {n:'Dandelion Malbec Rosé – Orgânico',d:'Vinho argentino rosé orgânico varietal da Malbec. Tem uma cor rosa pálido com reflexos salmão. Aromas de frutas vermelhas, como morangos e cerejas. Ataque doce, com acidez refrescante e final longo.',p:'R$ 155,00'},
+ {n:'Pata Negra Oro Rosé',d:'O Pata Negra Oro Rosé é produzido com uvas Tempranillo na região de Valdepeñas. Seus aromas são delicados e lembram frutas vermelhas frescas, como morango e groselha, com sutis notas florais. No paladar, revela-se frutado, refrescante e leve, com final…',p:'R$ 120,00'},
+ {n:'Val de Resa Rosé Garnacha',d:'Cor rosa brilhante. Aromático, frutado, acidez na medida e muito elegante. Elaborado pelo método tradicional de sangria, com maceração curta para dar cor e sabor. Especificações: Uva: 100% Garnacha. Local: Espanha, La Rioja. Teor Alcoólico: 13,5%.',p:'R$ 152,00'}
+]},
+
+/* ── SIN ALCOHOL — confirmado (print oficial) ── */
+{id:'sin',group:'doces',es:'Sin Alcohol',items:[
+ {n:'Água de Coco Natural',d:'Copo de 300 ml.',p:'R$ 12,00'},
+ {n:'Água Mineral sem gás',d:'300ml.',p:'R$ 9,00'},
+ {n:'Água Mineral com gás',d:'300ml.',p:'R$ 9,00'},
+ {n:'Coca-Cola',d:'350ml.',p:'R$ 9,00'},
+ {n:'Coca-Cola Zero',d:'220ml.',p:'R$ 9,00'},
+ {n:'Fys Guaraná',p:'R$ 8,00'},
+ {n:'Fys Laranja',p:'R$ 8,00'},
+ {n:'Fys Limão Siciliano',p:'R$ 8,00'},
+ {n:'H2OH!',d:'500ml.',p:'R$ 9,00'},
+ {n:'Limonada con Gengibre',p:'R$ 16,00'},
+ {n:'Limonada Rosa 300ml',d:'Limonada com cereja e xarope de rosas!',p:'R$ 18,00'},
+ {n:'Limonada Siciliana con Miel',d:'Nossa limonada feita com limões sicilianos, mel, gelo e muito amor!',p:'R$ 19,00'},
+ {n:'Mel de Cacau 300ml',p:'R$ 20,00'},
+ {n:'Red Bull',d:'Tradicional · 250ml.',p:'R$ 21,00'},
+ {n:'Schweppes Ginger Ale',p:'R$ 10,00'},
+ {n:'Schweppes Citrus',d:'350ml.',p:'R$ 10,00'},
+ {n:'Schweppes Tônica',d:'350ml.',p:'R$ 10,00'},
+ {n:'Tinto de Verano Sin Alcohol',p:'R$ 17,00'},
+ {n:'Tônica',p:'R$ 8,00'},
+ {n:'Zumo de Uva Integral',d:'Tinto/Blanco.',p:'R$ 15,00'}
+]},
+
+/* ── POSTRES — confirmado (print oficial; 5 itens) ── */
+{id:'postres',group:'doces',es:'Postres',items:[
+ {n:'Churros con Dulce de Leche',d:'Massa crocante embrulhada em açúcar e acompanha aquele doce de leite argentino que adoramos!',p:'R$ 32,00'},
+ {n:'Crema Catalana',d:'Como brûlée, porém mais suave.',p:'R$ 28,00'},
+ {n:'Mousse de Chocolate del Chef',d:'Mousse de chocolate 60% con orujo de café.',p:'R$ 29,00'},
+ {n:'Mousse de Queso',d:'Com compota de frutas vermelhas.',p:'R$ 29,00'},
+ {n:'Tabla de Degustación',d:'Os 2 mousses e a crema catalana.',p:'R$ 47,00'}
+]},
+
+/* ── CAFÉS — confirmado (print oficial; 3 itens) ── */
+{id:'cafes',group:'doces',es:'Cafés',items:[
+ {n:'Café Solo',d:'Café expresso.',p:'R$ 10,00'},
+ {n:'Carajillo 43',d:'Expresso coquetelado com uma dose de licor 43 e gelo, que combinação perfeita!',p:'R$ 29,00'},
+ {n:'Carajillo Español',d:'Con un chorro de licor.',p:'R$ 18,00'}
+]}
+];
+
+/* ── renderização ── */
+var panel=$('#panel'),tabsEl=$('#tabs'),searchEl=$('#search');
+var current='all';
+var esc=function(s){return String(s).replace(/[&<>"]/g,function(m){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]})};
+
+function itemsHtml(items){
+  var h='';
+  items.forEach(function(it,i){
+    var multi=it.p.indexOf('/')>-1;
+    h+='<div class="item it-in" style="animation-delay:'+Math.min(i*30,300)+'ms">'
+      +'<div class="it-top"><h4>'+esc(it.n)+'</h4><span class="dots"></span><span class="price'+(multi?' sm':'')+'">'+esc(it.p)+'</span></div>'
+      +(it.d?'<p class="desc">'+esc(it.d)+'</p>':'')
+      +'</div>';
+  });
+  return h;
+}
+function catHtml(c,items,idx){
+  return '<article class="cat" id="cat-'+c.id+'">'
+    +(c.pt?'<p class="cat-pt">'+esc(c.pt)+'</p>':'')
+    +'<h3><span class="n">'+String(idx).padStart(2,'0')+'</span>'+esc(c.es)+'</h3>'
+    +(c.note?'<p class="cat-note">'+esc(c.note)+'</p>':'')
+    +'<div class="items">'+itemsHtml(items)+'</div></article>';
+}
+function render(){
+  var q=searchEl.value.trim().toLowerCase();
+  if(q){
+    var hits=[],total=0;
+    MENU.forEach(function(c,idx){
+      var its=c.items.filter(function(i){return (i.n+' '+(i.d||'')).toLowerCase().indexOf(q)>-1||c.es.toLowerCase().indexOf(q)>-1});
+      if(its.length){hits.push({c:c,its:its,idx:idx+1});total+=its.length}
+    });
+    panel.innerHTML=total
+      ? '<p class="search-info">'+total+' resultado'+(total>1?'s':'')+' para “'+esc(searchEl.value.trim())+'”</p>'
+        +hits.map(function(h){return catHtml(h.c,h.its,h.idx)}).join('')
+      : '<div class="empty"><p>Nenhum item encontrado para “'+esc(searchEl.value.trim())+'”.<br>Tente outra palavra ou consulte o nosso time.</p></div>';
+    return;
+  }
+  if(current==='all'){
+    var n=0;
+    panel.innerHTML=GROUPS.map(function(g){
+      var cs=MENU.filter(function(c){return c.group===g.id});
+      return '<div class="ghead"><h3>'+g.label+'</h3></div>'
+        +cs.map(function(c){return catHtml(c,c.items,++n)}).join('');
+    }).join('');
+  }else{
+    var idx=MENU.findIndex(function(c){return c.id===current})+1;
+    panel.innerHTML=catHtml(MENU[idx-1],MENU[idx-1].items,idx);
+  }
+}
+function renderTabs(){
+  var h='<button class="tab'+(current==='all'?' active':'')+'" data-id="all">Tudo</button>';
+  MENU.forEach(function(c){
+    h+='<button class="tab'+(current===c.id?' active':'')+'" data-id="'+c.id+'">'+esc(c.es)+'</button>';
+  });
+  tabsEl.innerHTML=h;
+}
+function selectCat(id,doScroll){
+  current=id;searchEl.value='';renderTabs();render();
+  if(doScroll){
+    var y=panel.getBoundingClientRect().top+scrollY-($('.nav').offsetHeight+70);
+    scrollTo({top:y,behavior:'smooth'});
+  }
+}
+tabsEl.addEventListener('click',function(e){
+  var b=e.target.closest('.tab');if(b)selectCat(b.dataset.id,true);
+});
+var tm;searchEl.addEventListener('input',function(){clearTimeout(tm);tm=setTimeout(render,140)});
+renderTabs();render();
+})();
+</script>
+</body>
+</html>
